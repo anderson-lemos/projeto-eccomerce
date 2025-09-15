@@ -3,34 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/variables.css" />
     <link rel="stylesheet" href="./css/estilos.css" />
+    <link rel="stylesheet" href="./css/responsivo.css" />
     <title>E-commerce Master</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
-      <a href="#">
-        <img src="./assets/images/logo.svg" alt="logo devquest" />
-      </a>
-
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#produtos">Produtos</a></li>
-          <li><a href="#perguntas">Perguntas frequentes</a></li>
-          <li><a href="#contato">Fale conosco</a></li>
-        </ul>
-      </nav>
-      <button>
-        <img
-          src="./assets/images/icone_carrinho.svg"
-          alt="carrinho de compras"
-        />
-      </button>
+    <header class="cabecalho">
+      <div class="header-conteudo">
+        <div class="header-esquerda">
+          <button class="menu-hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <a class="logo" href="#">
+            <img src="./assets/images/logo.svg" alt="logo devquest" />
+          </a>
+        </div>
+        <nav class="menu-principal">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#perguntas">Perguntas frequentes</a></li>
+            <li><a href="#contato">Fale conosco</a></li>
+          </ul>
+        </nav>
+        <button class="botao-carrinho" data-micromodal-trigger="modal-1">
+          <img
+            src="./assets/images/icone_carrinho.svg"
+            alt="carrinho de compras"
+          />
+          <span id="contador-carrinho">0</span>
+        </button>
+      </div>
     </header>
     <main>
       <section>
@@ -159,5 +173,23 @@
       </div>
     </div>
     <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+  <script>
+  function ajustarCarrinho() {
+    const carrinho = document.querySelector('.botao-carrinho');
+    const headerEsquerda = document.querySelector('.header-esquerda');
+    const headerConteudo = document.querySelector('.header-conteudo');
+    if(window.innerWidth < 940) {
+      if(headerEsquerda && carrinho && carrinho.parentElement !== headerEsquerda) {
+        headerEsquerda.appendChild(carrinho);
+      }
+    } else {
+      if(headerConteudo && carrinho && carrinho.parentElement !== headerConteudo) {
+        headerConteudo.appendChild(carrinho);
+      }
+    }
+  }
+  window.addEventListener('resize', ajustarCarrinho);
+  window.addEventListener('DOMContentLoaded', ajustarCarrinho);
+  </script>
   </body>
 </html>
